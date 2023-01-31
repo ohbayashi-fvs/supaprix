@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+// Postgresの流儀に合わせてsnake_caseを使用
+// RLSでバグる可能性があるため
+model todos {
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String?
+  is_done Boolean @default(false)
+  uesrs users?   @relation(fields: [user_id], references: [id])
+  user_id  String?
+}
+
+//RLS SELECT using (uid())::text = id
+model users {
+  id    String @id
+  name  String
+  todos todos[]
+}
+
+
