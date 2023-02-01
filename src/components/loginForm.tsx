@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
 type Props = {
@@ -6,6 +6,7 @@ type Props = {
 }
 
 export const LoginForm = ({ switchSignupLogin }: Props) => {
+  const [buttonDisable, setButtonDisable] = useState(false)
   const router = useRouter()
   const supabaseClient = useSupabaseClient()
   useEffect(() => {
@@ -45,7 +46,7 @@ export const LoginForm = ({ switchSignupLogin }: Props) => {
             <input id="password" type="password" name="password" autoComplete="current-password" />
           </label>
         </div>
-        <input type="submit" />
+        <input type="submit" disabled={buttonDisable} />
       </form>
     </div>
   )

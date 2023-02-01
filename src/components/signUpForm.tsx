@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 
 type Props = {
@@ -6,6 +6,7 @@ type Props = {
 }
 
 export const SignUpForm = ({ switchSignupLogin }: Props) => {
+  const [buttonDisable, setButtonDisable] = useState(false)
   const supabaseClient = useSupabaseClient()
   return (
     <div>
@@ -22,6 +23,7 @@ export const SignUpForm = ({ switchSignupLogin }: Props) => {
             email: { value: string }
             password: { value: string }
           }
+          setButtonDisable(true)
           const result = await supabaseClient.auth.signUp({
             email: target.email.value,
             password: target.password.value,
@@ -31,6 +33,7 @@ export const SignUpForm = ({ switchSignupLogin }: Props) => {
               },
             },
           })
+          setButtonDisable(false)
           if (!result.error) {
             switchSignupLogin()
             alert('メール送ったで')
@@ -57,7 +60,7 @@ export const SignUpForm = ({ switchSignupLogin }: Props) => {
             <input id="password" type="password" name="password" autoComplete="current-password" />
           </label>
         </div>
-        <input type="submit" />
+        <input type="submit" disabled={buttonDisable} />
       </form>
     </div>
   )

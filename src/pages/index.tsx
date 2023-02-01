@@ -1,5 +1,4 @@
-import type { GetServerSideProps, NextPage } from 'next'
-import prisma from '../lib/prisma'
+import type { NextPage } from 'next'
 import { SignUpForm } from 'components/signUpForm'
 import { LoginForm } from 'components/loginForm'
 import { useState } from 'react'

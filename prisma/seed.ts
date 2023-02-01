@@ -81,7 +81,7 @@ alter default privileges in schema public grant all on sequences to postgres, an
 create or replace function public.handle_new_user() 
 returns trigger as $$
 begin
-  insert into public.users (id, name)
+  insert into public.user (id, name)
   values (new.id, new.raw_user_meta_data->>'name');
   return new;
 end;
@@ -90,4 +90,8 @@ $$ language plpgsql security definer;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
+*/
+
+/*RLS  :: means cast
+  uid()::text =  user_id
 */
