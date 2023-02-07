@@ -1,1 +1,2 @@
 # supaprix
+# supabase-next-prisma
