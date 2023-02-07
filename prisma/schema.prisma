@@ -10,20 +10,38 @@ datasource db {
 
 // Postgresの流儀に合わせてsnake_caseを使用
 // RLSでバグる可能性があるため
-model todo {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  is_done Boolean @default(false)
-  user user?   @relation(fields: [user_id], references: [id])
-  user_id  String?
-}
 
 //RLS SELECT using (uid())::text = id
-model user {
+
+model users {
   id    String @id
   name  String
-  todo todo[]
 }
 
+model groups {
+  id   String @id
+  roleId String
+}
 
+enum Role {
+  USER
+  LEADER
+  ADMIN
+}
+
+model roles {
+  id  String @id
+  role Role @default(USER)
+    createdAt              DateTime            @default(now())
+  updatedAt              DateTime            @updatedAt
+}
+
+model organizations {
+  id     String @id
+  organization_name  String
+  address  String
+  manager_Name  String
+  invitation_code   String
+    createdAt              DateTime            @default(now())
+  updatedAt              DateTime            @updatedAt
+}

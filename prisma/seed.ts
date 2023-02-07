@@ -95,3 +95,19 @@ create trigger on_auth_user_created
 /*RLS  :: means cast
   uid()::text =  user_id
 */
+
+/*
+# Environment variables declared in this file are automatically made available to Prisma.
+# See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
+
+# Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
+# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
+
+#  YOUR-PROJECT-PASSWORD プロジェクト作成時のPW
+# YOUR-PROJECT-SITE https://[...].supabase.co [...]の部分
+#DATABASE_URL="postgres://postgres:[YOUR-PROJECT-PASSWORD]@db.[YOUR-PROJECT-SITE].supabase.co:5432/postgres"
+#SHADOW_DATABASE_URL="postgres://postgres:[YOUR-PROJECT-PASSWORD]@db.[YOUR-PROJECT-SITE].supabase.co:5432/postgres_shadow"
+
+# https://fgsuhpzglrzoorlcbuph.supabase.co
+
+*/
